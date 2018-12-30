@@ -2,13 +2,13 @@
 
 int move ; 
 
-MotorPID motor(3,22,A0,35); //shoulder
+MotorPID motor(5,28,A0,35); //shoulder
 
-MotorPID motor1(5,24,A0,30); //elbow
+MotorPID motor1(3,22,A3,30); //elbow
 
-int a ; //Link angle at set up shoulder
+int a =0 ; //Link angle at set up shoulder
 
-int b ; //Link angle at set up elbow
+int b = 0; //Link angle at set up elbow
 
 void setup() { put your setup code here, to run once:
   Serial.begin(9600);
