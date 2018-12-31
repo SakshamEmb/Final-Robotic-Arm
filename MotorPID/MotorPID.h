@@ -22,7 +22,7 @@ class MotorPID
         
         void setPID(float,float,float);
         
-        
+        float pidTerm_scaled ;
         
 
             
@@ -52,7 +52,7 @@ class MotorPID
         float changeError ;
         float totalError ;
         float pidTerm ;
-        float pidTerm_scaled ;
+        //float pidTerm_scaled ;
         
         int setpoint ;
         
