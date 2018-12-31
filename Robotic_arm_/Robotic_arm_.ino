@@ -60,10 +60,10 @@ void loop() {
   
   motor2.x = motor.x - 20 ;
  }
- if(move==7){
-   
-   
- }
-   
+ /*if(move==7){
+   motor.pidtermscaled = 0 ;
+   motor.errorcheck() ; 
+   }
+  */ 
   
 }
