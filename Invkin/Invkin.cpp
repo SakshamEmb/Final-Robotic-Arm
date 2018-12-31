@@ -30,8 +30,9 @@ void Invkin::trigono_xyz(float X, float Y, float Z)
 
     r3 = sqrt(X*X + Y*Y + (Z-a1)*(Z-a1));
 
-    theta2 = (atan((Z-a1)/(sqrt(X*X+Y*Y)))-acos((a2*a2 + r3*r3 - a3*a3)/(2*a2*r3)))*180/PI;
+    theta2 = (atan((Z-a1)/(sqrt(X*X+Y*Y)))+acos((a2*a2 + r3*r3 - a3*a3)/(2*a2*r3)))*180/PI;
 
     im = acos((a3*a3 + a2*a2 - r3*r3)/(2*a2*a3))*(180/PI);    
+    theta3 = -1*(180 - im);
     
 }
