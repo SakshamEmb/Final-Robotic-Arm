@@ -17,6 +17,8 @@ class Invkin
     void transform();    
     
     float theta3,theta1,theta2,im,r3;
+   
+    float X,Y,Z ;
     
     
     private:
@@ -27,10 +29,7 @@ class Invkin
     const float a2=40; 
     const float a3=30; 
     
-    float L, L1;
-    
-    float X ,Y,Z; 
-        
+    float L, L1;        
 };
 
 
