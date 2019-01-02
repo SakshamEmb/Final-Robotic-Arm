@@ -2,12 +2,16 @@
 #include "Invkin.h"
 int X , Y , Z ;
 int move ; 
+int base_pwm=7;
+int base_dir=34;
 
-Invkin IK(50,0,18);
+Invkin IK(50,0,23);
 
-MotorPID motor(5,28,A0,35); //shoulder
+MotorPID motor(3,22,A0,35); //shoulder
 
-MotorPID motor1(3,22,A3,30); //elbow
+MotorPID motor1(5,28,A3,30); //elbow
+
+
 
 int a = 1573 ; //Link angle at set up shoulder for potentiometer
 
@@ -19,7 +23,9 @@ int b1 = 60 ; //Link angle at that value
 
 void setup() { 
   Serial.begin(9600);
-  motor.setPID(0.39,0.001,-0.002);
+  motor.setPID(0.39,0.0001,-0.002);
+  pinMode(base_dir,OUTPUT);
+  pinMode(base_pwm,OUTPUT);
   motor1.setPID(0.25,0.001,0.02);
   motor.x = a + 5.5*a1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
   motor1.x = b - 4*b1  - 4*IK.theta3 ;    // - goes up relative to position now to zero relative position
@@ -27,7 +33,13 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:  
+  // put your main code here, to run repeatedly:
+  Serial.println("X : ");
+  Serial.print(IK.X );  
+  Serial.print("  Y : ") ; 
+  Serial.print(IK.Y);  
+  Serial.print("  Z : ");  
+  Serial.print(IK.Z);  
   IK.transform();
   motor.x = a + 5.5*a1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
   motor1.x = b - 4*b1  - 4*IK.theta3 ; 
@@ -54,16 +66,21 @@ void loop() {
   //motor.x = motor.x -5.5*Ik.theta2 ;
 
  }
+
  if(move==3){
-  IK.Y = IK.Y + 1 ;
-  //motor1.x = motor1.x + 4*IK.theta3 ;
-
+   digitalWrite(base_dir,LOW);
+   analogWrite(base_pwm,150);
+   
+   delay(2000);
+   analogWrite(base_pwm,0);
  }
+   
  if(move==4){
-  IK.Y = IK.Y - 1 ;
-  //motor1.x = motor1.x - 4*IK.theta3 ;
-
- }
+   analogWrite(base_pwm,100);
+   digitalWrite(base_dir,HIGH);
+   delay(3000);
+   analogWrite(base_pwm,0);
+   }
  if(move==5){
   IK.Z = IK.Z + 1 ;
   //motor2.x = motor2.x + IK.theta3 ;
