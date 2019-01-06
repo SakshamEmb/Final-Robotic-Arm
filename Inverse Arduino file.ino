@@ -23,10 +23,10 @@ int b1 = 60 ; //Link angle at that value
 
 void setup() { 
   Serial.begin(9600);
-  motor.setPID(0.39,0.0001,-0.002);
+  motor.setPID(0.39,0.000001,-0.02);
   pinMode(base_dir,OUTPUT);
   pinMode(base_pwm,OUTPUT);
-  motor1.setPID(0.25,0.001,0.02);
+  motor1.setPID(0.25,0.00001,0.02);
   motor.x = a + 5.5*a1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
   motor1.x = b - 4*b1  - 4*IK.theta3 ;    // - goes up relative to position now to zero relative position
  
@@ -57,15 +57,10 @@ void loop() {
  if(move==0){}
  if(move==1){
   IK.X = IK.X + 1 ;
-  
-  //motor.x = motor.x + 5.5*IK.theta2  ;
-
  }
  if(move==2){
   IK.X = IK.X - 1 ;
-  //motor.x = motor.x -5.5*Ik.theta2 ;
-
- }
+  }
 
  if(move==3){
    digitalWrite(base_dir,LOW);
@@ -83,13 +78,10 @@ void loop() {
    }
  if(move==5){
   IK.Z = IK.Z + 1 ;
-  //motor2.x = motor2.x + IK.theta3 ;
-   
- }
+  }
  if(move==6){
   IK.Z = IK.Z - 1 ;
-  //motor2.x = motor2.x - IK.theta3 ;
- }
+   }
 
   }
   
