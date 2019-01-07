@@ -21,14 +21,18 @@ int a1 = 30 ;  // Link angle at that value
 
 int b1 = 60 ; //Link angle at that value 
 
+int k1 = a + 5.5*a1 ;
+
+int k2 = b - 4*b1 ; 
+
 void setup() { 
   Serial.begin(9600);
   motor.setPID(0.39,0.000001,-0.02);
   pinMode(base_dir,OUTPUT);
   pinMode(base_pwm,OUTPUT);
   motor1.setPID(0.25,0.00001,0.02);
-  motor.x = a + 5.5*a1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
-  motor1.x = b - 4*b1  - 4*IK.theta3 ;    // - goes up relative to position now to zero relative position
+  motor.x = k1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
+  motor1.x = k2  - 4*IK.theta3 ;    // - goes up relative to position now to zero relative position
  
 }
 
@@ -41,8 +45,8 @@ void loop() {
   Serial.print("  Z : ");  
   Serial.print(IK.Z);  
   IK.transform();
-  motor.x = a + 5.5*a1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
-  motor1.x = b - 4*b1  - 4*IK.theta3 ; 
+  motor.x = k1 - 5.5*IK.theta2  ;  // + goes down relative to position now to zero to relative position
+  motor1.x = k2  - 4*IK.theta3 ; 
   Serial.println("------Shoulder Motor---------");
   Serial.println(" ");
   motor.errorcheck();
