@@ -70,14 +70,14 @@ void loop() {
    digitalWrite(base_dir,LOW);
    analogWrite(base_pwm,150);
    
-   delay(2000);
+   delay(200);
    analogWrite(base_pwm,0);
  }
    
  if(move==4){
    analogWrite(base_pwm,100);
    digitalWrite(base_dir,HIGH);
-   delay(3000);
+   delay(300);
    analogWrite(base_pwm,0);
    }
  if(move==5){
